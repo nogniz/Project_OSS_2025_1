@@ -1,5 +1,5 @@
 import tkinter as tk
-
+import math
 
 class Calculator:
     def __init__(self, root):
@@ -19,7 +19,7 @@ class Calculator:
             ['4', '5', '6', '*'],
             ['1', '2', '3', '-'],
             ['0', '.', 'C', '+'],
-            ['=']
+            ['π', '=']  # ← π 버튼 추가
         ]
 
         for row in buttons:
@@ -42,11 +42,10 @@ class Calculator:
                 self.expression = str(eval(self.expression))
             except Exception:
                 self.expression = "에러"
+        elif char == 'π':
+            self.expression += str(math.pi)  # ← π는 3.14159...으로 대체
         else:
             self.expression += str(char)
 
         self.entry.delete(0, tk.END)
         self.entry.insert(tk.END, self.expression)
-
-
-
