@@ -1,6 +1,5 @@
 from budget import Budget
 
-
 def main():
     budget = Budget()
 
@@ -13,6 +12,14 @@ def main():
         choice = input("선택 > ")
 
         if choice == "1":
+            # 년, 월, 일 입력받기
+            year = input("년도(YYYY) 입력 (예: 2023): ")
+            month = input("월(MM) 입력 (예: 01): ")
+            day = input("일(DD) 입력 (예: 15): ")
+
+            # 날짜 문자열 조합 (YYYY-MM-DD 형식)
+            date_input = f"{year}-{month}-{day}"
+
             category = input("카테고리 (예: 식비, 교통 등): ")
             description = input("설명: ")
             try:
@@ -20,7 +27,9 @@ def main():
             except ValueError:
                 print("잘못된 금액입니다.\n")
                 continue
-            budget.add_expense(category, description, amount)
+
+            
+            budget.add_expense(date_input, category, description, amount)
 
         elif choice == "2":
             budget.list_expenses()
